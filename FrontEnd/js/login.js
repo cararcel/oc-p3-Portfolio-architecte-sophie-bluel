@@ -1,4 +1,4 @@
-import utils from './utils.js';
+import auth from './auth.js';
 
 const formLogin = document.querySelector('.login-form');
 
@@ -13,19 +13,6 @@ formLogin.addEventListener('submit', async function (event) {
         password: form.elements.password.value,
     };
 
-    //move to auth
-    const login = await utils.callAPI(
-        '/users/login',
-        'POST',
-        JSON.stringify(userData)
-    );
-
-    if (login.error) {
-        alert('Échec de la connexion');
-        return;
-    }
-
-    localStorage.setItem('loginToken', login.token);
-    //until here
+    await auth.login(userData);
     location.href = 'index.html';
 });

@@ -2,8 +2,9 @@ import utils from './utils.js';
 import generateHTMLForWorks from './generateWorks.js';
 import generateHTMLForFiltersWithEvents from './generateFilters.js';
 import { generateHTMLAdminMode } from './admin.js';
+import auth from './auth.js';
 
-if (utils.getToken() !== null) {
+if (auth.isLoggedIn()) {
     generateHTMLAdminMode();
 }
 

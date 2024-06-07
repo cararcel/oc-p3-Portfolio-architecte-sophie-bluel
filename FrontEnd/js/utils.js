@@ -1,5 +1,5 @@
-//Function to call fetch
 /**
+ * Function to call fetch
  *
  * @param {string} path
  * @param {"GET"|"POST"|"PUT"|"DELETE"} method
@@ -11,7 +11,7 @@ async function callAPI(
     body = null,
     headers = { 'Content-Type': 'application/json' }
 ) {
-    const token = getToken();
+    const token = localStorage.getItem('loginToken');
 
     if (token) {
         headers['authorization'] = `Bearer ${token}`;
@@ -34,8 +34,4 @@ async function callAPI(
     } catch (ignore) {}
 }
 
-function getToken() {
-    return localStorage.getItem('loginToken');
-}
-
-export default { callAPI, getToken };
+export default { callAPI };

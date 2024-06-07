@@ -1,6 +1,7 @@
 import utils from './utils.js';
 import modal from './modal.js';
 import { generateHTMLForWork } from './generateWorks.js';
+import auth from './auth.js';
 
 export function generateHTMLAdminMode() {
     const topBar = document.createElement('div');
@@ -27,8 +28,19 @@ export function generateHTMLAdminMode() {
     portfolioTitle.classList.add('portafolio-adminmode');
     portfolioTitle.appendChild(modifyBtn);
 
+    const filters = document.querySelector('.filters');
+    filters.classList.add('ishidden');
+
     const logoutBtn = document.querySelector('.auth-button');
-    logoutBtn.innerHTML = `<button class="logout">logout</button>`;
+    logoutBtn.innerHTML = `<button type="button" class="logout" id="logout">logout</button>`;
+    logoutBtn.addEventListener('click', function () {
+        auth.logout();
+        topBar.remove();
+        modifyBtn.remove();
+        logoutBtn.innerHTML = '<a href="login.html">login</a>';
+        portfolioTitle.classList.remove('portafolio-adminmode');
+        filters.classList.remove('ishidden');
+    });
 
     modal.generateModal();
     openPhotoGallery();
