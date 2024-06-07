@@ -25,10 +25,6 @@ function generateModal() {
     aside.appendChild(modalBackground);
     aside.appendChild(modalWrapper);
     document.body.appendChild(aside);
-
-    document
-        .querySelector('.portafolio-adminmode_modifier')
-        .addEventListener('click', openModal);
 }
 
 function setHeader(element) {
@@ -61,4 +57,5 @@ export default {
     setFooter,
     setHeader,
     setContent,
+    openModal,
 };

@@ -27,5 +27,5 @@ formLogin.addEventListener('submit', async function (event) {
 
     localStorage.setItem('loginToken', login.token);
     //until here
-    location.href = 'admin.html';
+    location.href = 'index.html';
 });
