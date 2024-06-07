@@ -1,5 +1,5 @@
+//Function to call fetch
 /**
- * Function to call fetch
  *
  * @param {string} path
  * @param {"GET"|"POST"|"PUT"|"DELETE"} method

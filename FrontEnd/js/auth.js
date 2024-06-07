@@ -5,7 +5,11 @@ function isLoggedIn() {
 }
 
 async function login(userData) {
-    await utils.callAPI('/users/login', 'POST', JSON.stringify(userData));
+    const login = await utils.callAPI(
+        '/users/login',
+        'POST',
+        JSON.stringify(userData)
+    );
 
     if (login.error) {
         alert('Échec de la connexion');

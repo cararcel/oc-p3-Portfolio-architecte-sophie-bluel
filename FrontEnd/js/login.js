@@ -14,5 +14,6 @@ formLogin.addEventListener('submit', async function (event) {
     };
 
     await auth.login(userData);
+
     location.href = 'index.html';
 });
