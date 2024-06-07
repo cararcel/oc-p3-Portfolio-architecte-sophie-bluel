@@ -374,7 +374,7 @@ footer nav ul {
     padding-left: 130px;
 }
 
-.portafolio-adminmode_modifier {
+.portafolio-title_btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -384,7 +384,7 @@ footer nav ul {
     cursor: pointer;
 }
 
-.portafolio-adminmode_modifier:hover {
+.portafolio-title_btn:hover {
     text-decoration: underline;
 }
 
@@ -392,4 +392,12 @@ footer nav ul {
     height: 15px;
     width: 15px;
     fill: currentColor;
+}
+
+.logout {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
 }
