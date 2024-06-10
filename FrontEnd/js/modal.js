@@ -1,8 +1,8 @@
-function generateModal() {
-    const aside = document.createElement('aside');
-    aside.classList.add('modal');
-    aside.classList.add('ishidden');
-    aside.setAttribute('id', 'modal');
+function generateHTMLModal() {
+    const modal = document.createElement('modal');
+    modal.classList.add('modal');
+    modal.classList.add('ishidden');
+    modal.setAttribute('id', 'modal');
 
     const modalBackground = document.createElement('div');
     modalBackground.classList.add('modal-background');
@@ -22,9 +22,9 @@ function generateModal() {
     closeBtn.addEventListener('click', closeModal);
 
     modalWrapper.appendChild(closeBtn);
-    aside.appendChild(modalBackground);
-    aside.appendChild(modalWrapper);
-    document.body.appendChild(aside);
+    modal.appendChild(modalBackground);
+    modal.appendChild(modalWrapper);
+    document.body.appendChild(modal);
 }
 
 function setHeader(element) {
@@ -53,7 +53,7 @@ function closeModal() {
 }
 
 export default {
-    generateModal,
+    generateHTMLModal,
     setFooter,
     setHeader,
     setContent,

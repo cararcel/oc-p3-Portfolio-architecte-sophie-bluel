@@ -17,21 +17,27 @@ async function callAPI(
         headers['authorization'] = `Bearer ${token}`;
     }
 
-    const response = await fetch(`http://localhost:5678/api${path}`, {
+    return fetch(`http://localhost:5678/api${path}`, {
         method,
         body,
         headers,
     });
-
-    try {
-        const data = await response.json();
-
-        if (!response.ok) {
-            return { error: true, status: response.status };
-        }
-
-        return data;
-    } catch (ignore) {}
 }
 
-export default { callAPI };
+async function getWorks() {
+    const response = await callAPI('/works');
+    if (!response.ok) {
+        return { error: true, status: response.status };
+    }
+    return response.json();
+}
+
+async function getCategories() {
+    const response = await callAPI('/categories');
+    if (!response.ok) {
+        return { error: true, status: response.status };
+    }
+    return response.json();
+}
+
+export default { callAPI, getWorks, getCategories };

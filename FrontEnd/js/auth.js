@@ -5,16 +5,18 @@ function isLoggedIn() {
 }
 
 async function login(userData) {
-    const login = await utils.callAPI(
+    const response = await utils.callAPI(
         '/users/login',
         'POST',
         JSON.stringify(userData)
     );
 
-    if (login.error) {
+    if (!response.ok) {
         alert('Échec de la connexion');
         return;
     }
+
+    const login = await response.json();
 
     localStorage.setItem('loginToken', login.token);
 }

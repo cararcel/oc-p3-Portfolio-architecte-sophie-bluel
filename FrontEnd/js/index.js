@@ -8,8 +8,8 @@ if (auth.isLoggedIn()) {
     generateHTMLAdminMode();
 }
 
-const categories = await utils.callAPI('/categories');
+const categories = await utils.getCategories();
 generateHTMLForFiltersWithEvents(categories);
 
-const works = await utils.callAPI('/works');
+const works = await utils.getWorks();
 generateHTMLForWorks(works);

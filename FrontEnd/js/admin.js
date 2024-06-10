@@ -42,7 +42,7 @@ export function generateHTMLAdminMode() {
         filters.classList.remove('ishidden');
     });
 
-    modal.generateModal();
+    modal.generateHTMLModal();
     openPhotoGallery();
     modifyBtn.addEventListener('click', modal.openModal);
 }
@@ -63,7 +63,7 @@ async function openPhotoGallery() {
     const gallery = document.createElement('div');
     gallery.classList.add('modal-gallery');
 
-    const works = await utils.callAPI('/works');
+    const works = await utils.getWorks();
     works.forEach(function (work) {
         const img = document.createElement('img');
         img.src = work.imageUrl;
@@ -98,7 +98,6 @@ async function deleteWork(id) {
 }
 
 function openAddPhoto() {
-    //For now: button to go back
     const wrapper = document.querySelector('.modal-wrapper');
     const btnBack = document.createElement('button');
     btnBack.classList = 'backbtn';
