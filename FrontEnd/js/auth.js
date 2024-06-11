@@ -12,8 +12,11 @@ async function login(userData) {
     );
 
     if (!response.ok) {
-        alert('Échec de la connexion');
-        return;
+        const errorMessage = document.querySelector('.login-error');
+        errorMessage.innerHTML =
+            "Oups ! Un problème est survenu. ! <br> l'utilisateur et/ou le mot de passe sont incorrects !";
+        // alert('Échec de la connexion');
+        return false;
     }
 
     const login = await response.json();

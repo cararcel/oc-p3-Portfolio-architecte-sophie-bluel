@@ -13,7 +13,8 @@ formLogin.addEventListener('submit', async function (event) {
         password: form.elements.password.value,
     };
 
-    await auth.login(userData);
-
-    location.href = 'index.html';
+    const isLoggedIn = await auth.login(userData);
+    if (isLoggedIn !== false) {
+        location.href = 'index.html';
+    }
 });

@@ -11,6 +11,7 @@ async function callAPI(
     body = null,
     headers = { 'Content-Type': 'application/json' }
 ) {
+    //Token Retrieval if available
     const token = localStorage.getItem('loginToken');
 
     if (token) {
@@ -18,6 +19,7 @@ async function callAPI(
     }
 
     try {
+        //Fetch request
         const response = await fetch(`http://localhost:5678/api${path}`, {
             method,
             body,
@@ -25,6 +27,8 @@ async function callAPI(
         });
 
         return response;
+
+        // if delivery (network) fails, it reports the issue
     } catch (error) {
         console.error(error);
 
@@ -35,8 +39,10 @@ async function callAPI(
 }
 
 async function getWorks() {
+    //wait for the response
     const response = await callAPI('/works');
 
+    //If I have an error to receive the request
     if (!response.ok) {
         alert('GetWorks: Une erreur s´est produite.');
         return [];
