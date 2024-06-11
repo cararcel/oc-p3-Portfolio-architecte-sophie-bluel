@@ -91,10 +91,13 @@ async function openPhotoGallery() {
 }
 
 async function deleteWork(id) {
-    await utils.callAPI(`/works/${id}`, 'DELETE');
-    document
-        .querySelectorAll(`.work-${id}`)
-        .forEach((element) => element.remove());
+    const hasDeleted = await utils.deleteWork(id);
+
+    if (hasDeleted) {
+        document
+            .querySelectorAll(`.work-${id}`)
+            .forEach((element) => element.remove());
+    }
 }
 
 function openAddPhoto() {
@@ -212,7 +215,12 @@ function validateForm() {
 
 async function addWork(form) {
     const formData = new FormData(form);
-    const work = await utils.callAPI('/works', 'POST', formData, {});
+    const work = await utils.addWork(formData);
+
+    if (work === false) {
+        return;
+    }
+
     generateHTMLForWork(
         {
             id: work.id,

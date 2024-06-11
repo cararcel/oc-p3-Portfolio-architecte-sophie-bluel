@@ -17,27 +17,65 @@ async function callAPI(
         headers['authorization'] = `Bearer ${token}`;
     }
 
-    return fetch(`http://localhost:5678/api${path}`, {
-        method,
-        body,
-        headers,
-    });
+    try {
+        const response = await fetch(`http://localhost:5678/api${path}`, {
+            method,
+            body,
+            headers,
+        });
+
+        return response;
+    } catch (error) {
+        console.error(error);
+
+        return {
+            ok: false,
+        };
+    }
 }
 
 async function getWorks() {
     const response = await callAPI('/works');
+
     if (!response.ok) {
-        return { error: true, status: response.status };
+        alert('GetWorks: Une erreur s´est produite.');
+        return [];
     }
+
     return response.json();
 }
 
 async function getCategories() {
     const response = await callAPI('/categories');
+
     if (!response.ok) {
-        return { error: true, status: response.status };
+        alert('GetCategories: Une erreur s´est produite.');
+        return [];
     }
+
     return response.json();
 }
 
-export default { callAPI, getWorks, getCategories };
+async function deleteWork(id) {
+    const response = await callAPI(`/works/${id}`, 'DELETE');
+
+    if (!response.ok) {
+        alert('deleteWork: Une erreur s´est produite.');
+        return false;
+    }
+
+    return true;
+}
+
+async function addWork(formData) {
+    const response = await callAPI('/works', 'POST', formData, {});
+
+    if (!response.ok) {
+        alert('addWork: Une erreur s´est produite.');
+        return false;
+    }
+
+    return response.json();
+}
+
+export default { callAPI, getWorks, getCategories, deleteWork, addWork };
